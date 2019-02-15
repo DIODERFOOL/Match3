@@ -58,5 +58,24 @@ public class Tile : MonoBehaviour {
 		SFXManager.instance.PlaySFX(Clip.Swap);
 	}
 
+    private GameObject GetAdjacent(Vector2 castDir)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, castDir);
+        if (hit.collider != null)
+        {
+            return hit.collider.gameObject;
+        }
+        return null;
+    }
+
+    private List<GameObject> GetAllAdjacentTiles()
+    {
+        List<GameObject> adjacentTiles = new List<GameObject>();
+        for (int i = 0; i < adjacentDirections.Length; i++)
+        {
+            adjacentTiles.Add(GetAdjacent(adjacentDirections[i]));
+        }
+        return adjacentTiles;
+    }
 
 }
