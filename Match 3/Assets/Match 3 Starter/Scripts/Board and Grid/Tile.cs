@@ -39,11 +39,21 @@ public class Tile : MonoBehaviour {
 		} else {
 			if (previousSelected == null) { // 3 Is it the first tile selected?
 				Select();
-			} else {
-				SwapSprite(previousSelected.render);
-				previousSelected.Deselect(); // 4
 			}
-		}
+            else
+            {
+                if (GetAllAdjacentTiles().Contains(previousSelected.gameObject))
+                { // 1
+                    SwapSprite(previousSelected.render); // 2
+                    previousSelected.Deselect();
+                }
+                else
+                { // 3
+                    previousSelected.GetComponent<Tile>().Deselect();
+                    Select();
+                }
+            }
+        }
 	}
 
 
