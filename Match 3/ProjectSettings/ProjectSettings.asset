@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 15
-  productGUID: 6e257b302168146cf9185ed8a28e8c8b
+  productGUID: f426a8cb6bd56df4aa06db64c546677f
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: Match 3
+  productName: Match 3 Unity
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -580,10 +580,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: cc78fd80-3018-48ec-addf-fbc165b140a7
+  cloudProjectId: f14ec818-de05-4897-9665-8ce68f87877e
   framebufferDepthMemorylessMode: 0
-  projectName: Match 3
-  organizationId: alejandrolm14-gmail-com
+  projectName: Match 3 Unity
+  organizationId: yugnar
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
