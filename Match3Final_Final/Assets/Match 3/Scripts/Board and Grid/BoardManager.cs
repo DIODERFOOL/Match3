@@ -53,6 +53,22 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    public void BoardReset()
+    {
+        for (int x = 0; x < xSize; x++)
+        {
+            for (int y = 0; y < ySize; y++)
+            {
+                if (tiles[x, y].GetComponent<SpriteRenderer>().sprite != null)
+                {
+                    tiles[x, y].GetComponent<SpriteRenderer>().sprite = null;
+                }
+            }
+        }
+        Vector2 offset = tile.GetComponent<SpriteRenderer>().bounds.size;
+        CreateBoard(offset.x, offset.y);
+    }
+
     public IEnumerator FindNullTiles()
     {
         for (int x = 0; x < xSize; x++)
@@ -124,6 +140,14 @@ public class BoardManager : MonoBehaviour
         }
 
         return possibleCharacters[Random.Range(0, possibleCharacters.Count)];
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown("m"))
+        {
+            Invoke("BoardReset", 0.5f);
+        }
     }
 
 }

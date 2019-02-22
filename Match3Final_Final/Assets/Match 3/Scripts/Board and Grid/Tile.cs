@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+//Salu2 testing testing
 public class Tile : MonoBehaviour
 {
     private static Color selectedColor = new Color(.5f, .5f, .5f, 1.0f);
@@ -34,7 +35,7 @@ public class Tile : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (render.sprite == null || BoardManager.instance.IsShifting)
+        if (render.sprite == null || BoardManager.instance.IsShifting || render.sprite.name == "stoneheadSprite")
         {
             return;
         }
@@ -102,6 +103,10 @@ public class Tile : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, castDir);
         if (hit.collider != null)
         {
+            //if(hit.collider.gameObject.GetComponent<SpriteRenderer>().sprite.name == "stoneheadSprite")
+            //{
+            //    return null;
+            //}
             return hit.collider.gameObject;
         }
         return null;
@@ -123,8 +128,8 @@ public class Tile : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, castDir);
         while (hit.collider != null && hit.collider.GetComponent<SpriteRenderer>().sprite == render.sprite)
         {
-            matchingTiles.Add(hit.collider.gameObject);
-            hit = Physics2D.Raycast(hit.collider.transform.position, castDir);
+             matchingTiles.Add(hit.collider.gameObject);
+             hit = Physics2D.Raycast(hit.collider.transform.position, castDir);
         }
         return matchingTiles;
     }
@@ -137,7 +142,10 @@ public class Tile : MonoBehaviour
         {
             for (int i = 0; i < matchingTiles.Count; i++)
             {
-                matchingTiles[i].GetComponent<SpriteRenderer>().sprite = null;
+                if(matchingTiles[i].GetComponent<SpriteRenderer>().sprite.name != "stoneheadSprite")
+                {
+                    matchingTiles[i].GetComponent<SpriteRenderer>().sprite = null;
+                }
             }
             matchFound = true;
         }
