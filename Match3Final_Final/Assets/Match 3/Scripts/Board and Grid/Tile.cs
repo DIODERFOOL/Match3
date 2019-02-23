@@ -11,6 +11,8 @@ public class Tile : MonoBehaviour
     private SpriteRenderer render;
     private bool isSelected = false;
 
+    private int tag = -1;
+
     private Vector2[] adjacentDirections = new Vector2[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
 
     void Awake()
@@ -18,8 +20,43 @@ public class Tile : MonoBehaviour
         render = GetComponent<SpriteRenderer>();
     }
 
+    private void Start()
+    {
+        UpdateTag();
+    }
+
+    public void UpdateTag()
+    {
+        if (render.sprite.name == "Mushroom_0" || render.sprite.name == "Puffles_Sprite_0")
+        {
+            tag = 0;
+        }
+        else if (render.sprite.name == "Mushroom_1" || render.sprite.name == "Puffles_Sprite_4")
+        {
+            tag = 4;
+        }
+        else if (render.sprite.name == "Mushroom_2" || render.sprite.name == "Puffles_Sprite_2")
+        {
+            tag = 2;
+        }
+        else if (render.sprite.name == "Puffles_Sprite_3")
+        {
+            tag = 3;
+        }
+        else if (render.sprite.name == "Puffles_Sprite_1")
+        {
+            tag = 1;
+        }
+    }
+
+    public int getTag()
+    {
+        return tag;
+    }
+
     private void Select()
     {
+        Debug.Log("My tag is: " + tag);
         isSelected = true;
         render.color = selectedColor;
         previousSelected = gameObject.GetComponent<Tile>();
@@ -127,9 +164,21 @@ public class Tile : MonoBehaviour
         List<GameObject> matchingTiles = new List<GameObject>();
         RaycastHit2D hit = Physics2D.Raycast(transform.position, castDir);
         while (hit.collider != null && hit.collider.GetComponent<SpriteRenderer>().sprite == render.sprite)
+        //Debug.Log("The id of the adjacent tag is: " + hit.collider.GetComponent<Tile>().getTag() + " and my own tag is: " + tag);
+        //while (hit.collider != null && hit.collider.GetComponent<Tile>().getTag() == tag)
         {
-             matchingTiles.Add(hit.collider.gameObject);
-             hit = Physics2D.Raycast(hit.collider.transform.position, castDir);
+            if(hit.collider != null && hit.collider.GetComponent<SpriteRenderer>().sprite == render.sprite)
+            {
+                Debug.Log("Amazing-A");
+                Debug.Log(hit.collider.GetComponent<Tile>().getTag());
+                Debug.Log("My tag is: " + tag);
+            }
+            if(hit.collider != null && hit.collider.GetComponent<Tile>().getTag() == tag)
+            {
+                Debug.Log("Amazing-B");
+            }
+            matchingTiles.Add(hit.collider.gameObject);
+            hit = Physics2D.Raycast(hit.collider.transform.position, castDir);
         }
         return matchingTiles;
     }
